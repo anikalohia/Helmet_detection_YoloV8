@@ -135,7 +135,7 @@ Image & Video Inference
 # 🚀 Installation
 
 ```bash
-git clone https://github.com/your-username/Helmet-Detection-YOLOv8.git
+git clone https://github.com/anikalohia/Helmet-Detection-YOLOv8.git
 
 cd Helmet-Detection-YOLOv8
 
