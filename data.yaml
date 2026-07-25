@@ -1,0 +1,10 @@
+
+train: /content/helmet_dataset/images/train
+val: /content/helmet_dataset/images/val
+
+nc: 3
+
+names:
+  0: helmet
+  1: head
+  2: person
