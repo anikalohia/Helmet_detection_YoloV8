@@ -102,7 +102,11 @@ Inference on New Images
 </p>
 
 ---
+## 🎥 Demo
 
+![Helmet Detection Demo](demo.gif)
+
+---
 ## 🚀 Running Inference
 
 ```python
