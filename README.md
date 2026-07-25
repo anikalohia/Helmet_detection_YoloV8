@@ -1,33 +1,64 @@
 # 🪖 Helmet Detection using YOLOv8
 
-## 📌 Project Overview
+A custom **Helmet Detection System** built using **YOLOv8** to detect construction safety equipment in **images and videos**. The model is trained on the **Hard Hat Detection Dataset** and can identify:
 
-This project implements a custom **Helmet Detection System** using **YOLOv8**. The model is fine-tuned on the **Hard Hat Detection** dataset to detect construction safety equipment in images.
+- 🟢 Helmet
+- 🔴 No Helmet (Head)
+- 🔵 Person
 
-The complete pipeline includes:
+The project covers the complete object detection pipeline, from dataset preparation to model training, evaluation, and inference.
+
+---
+
+# 🎥 Demo
+
+![Helmet Detection Demo](demo.gif)
+
+---
+
+# ✨ Features
+
+- Custom-trained YOLOv8 model
+- Detects helmets, heads, and persons
+- Green bounding boxes for **Helmet**
+- Red **"No Helmet"** warning for uncovered heads
+- Confidence score visualization
+- Image inference
+- Video inference
+- Custom dataset preprocessing pipeline
+
+---
+
+# 📌 Project Overview
+
+This project implements an end-to-end object detection pipeline using **Ultralytics YOLOv8**.
+
+The complete workflow includes:
 
 - Parsing Pascal VOC XML annotations
-- Converting XML annotations to YOLO format
+- Converting XML annotations into YOLO format
 - Preparing train and validation datasets
 - Fine-tuning a pretrained YOLOv8 model
 - Evaluating the model using Precision, Recall, and mAP
-- Running inference on unseen images
+- Running inference on custom images and videos
 
 ---
 
-## 📂 Dataset
+# 📂 Dataset
 
 **Dataset:** Hard Hat Detection Dataset
 
-Classes:
+### Classes
 
-- 🪖 Helmet
-- 👤 Head
-- 🚶 Person
+| Class | Description |
+|--------|-------------|
+| 🪖 Helmet | Worker wearing a helmet |
+| 👤 Head | Worker without a helmet |
+| 🚶 Person | Full person detection |
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 - Python
 - PyTorch
@@ -38,9 +69,9 @@ Classes:
 
 ---
 
-## ⚙️ Project Workflow
+# ⚙️ Project Workflow
 
-```
+```text
 Pascal VOC XML
         │
         ▼
@@ -59,12 +90,12 @@ YOLOv8 Fine-Tuning
 Model Evaluation
         │
         ▼
-Inference on New Images
+Image & Video Inference
 ```
 
 ---
 
-## 📊 Model Performance
+# 📊 Model Performance
 
 | Metric | Score |
 |---------|------:|
@@ -75,9 +106,7 @@ Inference on New Images
 
 ---
 
-## 📈 Training Curves
-
-> Replace the image below with your `results.png`.
+# 📈 Training Curves
 
 <p align="center">
 <img src="sample_results/results.png" width="900">
@@ -85,9 +114,9 @@ Inference on New Images
 
 ---
 
-## 🖼️ Sample Predictions
+# 🖼️ Sample Predictions
 
-### Input Image
+## Input Image
 
 <p align="center">
 <img src="sample_results/input.jpg" width="700">
@@ -95,27 +124,71 @@ Inference on New Images
 
 ---
 
-### Detection Result
+## Helmet Detection Output
 
 <p align="center">
 <img src="sample_results/output.png" width="700">
 </p>
 
 ---
-## 🎥 Demo
 
-![Helmet Detection Demo](demo.gif)
+# 🚀 Installation
+
+```bash
+git clone https://github.com/your-username/Helmet-Detection-YOLOv8.git
+
+cd Helmet-Detection-YOLOv8
+
+python -m venv .venv
+```
+
+### Activate Virtual Environment
+
+**Windows**
+
+```bash
+.venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
-## 🚀 Running Inference
+
+# 🚀 Running Inference
+
+### Python
 
 ```python
 from ultralytics import YOLO
 
 model = YOLO("best.pt")
 
-results = model.predict(
+model.predict(
     source="image.jpg",
+    conf=0.25,
+    save=True
+)
+```
+
+### Video
+
+```python
+from ultralytics import YOLO
+
+model = YOLO("best.pt")
+
+model.predict(
+    source="video.mp4",
     conf=0.25,
     save=True
 )
@@ -123,46 +196,71 @@ results = model.predict(
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
-```
+```text
 Helmet-Detection-YOLOv8/
 │
+├── .gitignore
 ├── Helmet_Detection.ipynb
+├── predict.py
 ├── data.yaml
 ├── requirements.txt
 ├── README.md
 ├── best.pt
+├── demo.gif
 ├── sample_results/
 │   ├── input.jpg
-│   ├── output.jpg
-│   └── results.png
+│   ├── output.png
+│   ├── results.png
+│   └── test_video.mp4
 └── LICENSE
 ```
 
 ---
 
-## 🎯 What I Learned
+# 🎯 Results
 
-During this project, I learned how to:
+- Successfully trained a custom YOLOv8 model on the Hard Hat Detection dataset.
+- Built a complete annotation conversion pipeline from Pascal VOC XML to YOLO format.
+- Achieved **94.6% Precision** on the validation dataset.
+- Performs helmet detection on both images and videos.
+- Customized prediction visualization with:
+  - 🟢 Green labels for **Helmet**
+  - 🔴 Red labels for **No Helmet**
+
+---
+
+# 📚 What I Learned
+
+Through this project, I learned how to:
 
 - Prepare custom datasets for object detection
 - Convert Pascal VOC XML annotations into YOLO format
 - Fine-tune pretrained YOLOv8 models
 - Evaluate object detection models using Precision, Recall, and mAP
-- Run inference on unseen images using a custom-trained model
+- Perform image and video inference using a custom-trained model
+- Visualize detection results using OpenCV
+- Build an end-to-end computer vision pipeline
 
 ---
 
-## 🔮 Future Improvements
+# 🔮 Future Improvements
 
-- Improve recall by collecting additional training data
-- Experiment with larger YOLOv8 models (YOLOv8s/YOLOv8m)
-- Deploy the model using Streamlit
-- Extend the project for real-time workplace safety monitoring
+- Improve recall with additional training data
+- Experiment with larger YOLOv8 models (YOLOv8s / YOLOv8m)
+- Real-time webcam inference
+- Multi-object tracking using ByteTrack
+- PPE Detection (Helmet + Safety Vest)
+- Workplace safety dashboard using Streamlit
+- Edge deployment on Jetson Nano / Raspberry Pi
 
 ---
 
-## 📜 License
+# 📜 License
 
-This project is intended for educational and portfolio purposes.
+This project is intended for educational, research, and portfolio purposes.
+
+---
+
+## ⭐ If you found this project useful, consider giving it a star!
